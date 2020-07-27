@@ -70,7 +70,6 @@ public class searchMaze {
 					visited[curRow + dy[i]][curCol + dx[i]] = true;
 				}
 			}
-			
 		}
 		
 		queue.clear();
