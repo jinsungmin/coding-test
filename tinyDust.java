@@ -1,11 +1,12 @@
 package codingTest;
 
 import java.util.*;
-
-import codingTest.dragonCurve.curve;
-
 import java.io.*;
 
+
+/*
+	문제 17144
+*/
 public class tinyDust {
 	
 	static int R, C, T;
@@ -88,22 +89,43 @@ public class tinyDust {
 	}
 	
 	static void total() {
+		for(int i = 0; i < R; i++) {
+			for(int j = 0; j < C; j++) {
+				map[i][j] += temp[i][j];
+				temp[i][j] = 0;	// temp initialize
+			}
+		}
+	}
+	
+	static void solution(int time) {
+		while(time > 0) {
+			for(int i = 0; i < R; i++) {
+				for(int j = 0; j < C; j++) {
+					if(map[i][j] > 0) {
+						spread(i,j);
+					}
+				}
+			}
+		
+			total();
+		
+			findCleaner();
+			
+			time--;
+		}
 		
 	}
 	
-	static void solution() {
-		/*
+	static void calculate() {
+		int result = 0;
 		for(int i = 0; i < R; i++) {
 			for(int j = 0; j < C; j++) {
 				if(map[i][j] > 0) {
-					spread(i,j);
+					result += map[i][j];
 				}
 			}
 		}
-		*/
-		findCleaner();
-		
-		//total();
+		System.out.println(result);
 	}
 	
 	static boolean isInside(int x, int y) {
@@ -139,8 +161,11 @@ public class tinyDust {
 			}
 		}
 		
-		solution();
-		print();
+		solution(T);
+		
+		calculate();
+		
+		//print();
 		
 	}
 
