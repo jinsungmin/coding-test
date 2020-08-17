@@ -3,6 +3,10 @@ package codingTest;
 import java.util.*;
 import java.io.*;
 
+/*
+ 	¹®Á¦ 14891 - »ï¼º
+*/
+
 public class gearControl {
 
 	static class infor {
@@ -18,7 +22,7 @@ public class gearControl {
 	static int[][] gear = new int[4][8];
 	static int count;
 	static LinkedList<infor> queue = new LinkedList<infor>();
-
+	
 	static void solution(int count) {
 		while (count > 0) {
 			boolean[] move = new boolean[4];
@@ -39,26 +43,26 @@ public class gearControl {
 				}
 				
 				if(cur.number == 1) {
-					if (gear[cur.number+1][2] != gear[cur.number + 2][6]) {
+					if (move[cur.number+1] && gear[cur.number+1][2] != gear[cur.number + 2][6]) {
 						move[cur.number + 2] = true;
 						nDir[cur.number + 2] = nDir[cur.number + 1] * -1;
 					}
 				} else {
-					if (gear[cur.number- 2][2] != gear[cur.number-1][6]) {
+					if (move[cur.number-1] && gear[cur.number-2][2] != gear[cur.number-1][6]) {
 						move[cur.number - 2] = true;
 						nDir[cur.number - 2] = nDir[cur.number - 1] * -1;
 					}
 				}
 			} else if(cur.number == 0) {
 				for(int i = 0; i< 3; i++) {
-					if(gear[cur.number+i][2] != gear[cur.number + i+1][6]) {
+					if(move[cur.number+i] && gear[cur.number+i][2] != gear[cur.number + i+1][6]) {
 						move[cur.number + i + 1] = true;
 						nDir[cur.number+ i + 1] = nDir[cur.number+ i] * -1;
 					}
 				}
 			} else {
 				for(int i = 0; i < 3; i++) {
-					if(gear[cur.number-i][6] != gear[cur.number-i-1][2]) {
+					if(move[cur.number-i] && gear[cur.number-i][6] != gear[cur.number-i-1][2]) {
 						move[cur.number-i-1] = true;
 						nDir[cur.number-i-1] = nDir[cur.number-i] * -1;
 					}
